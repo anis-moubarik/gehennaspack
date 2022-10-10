@@ -17,7 +17,7 @@ jobs:
         id: package
         run: |
             ls -al gehennaspack/
-            mv gehennaspack/run.ahk gehennaspack-${{ github.event.release.tag_name }}.ahk
+            cp gehennaspack/run.ahk gehennaspack-${{ github.event.release.tag_name }}.ahk
             unzip gehennaspack/PaddleOCR.zip -d gehennaspack/
             mv gehennaspack/PaddleOCR-AutoHotkey/PaddleOCR gehennaspack/PaddleOCR
             rm gehennaspack/PaddleOCR.zip
@@ -30,7 +30,7 @@ jobs:
         uses: mknejp/delete-release-assets@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.event.release.tag }}
+          tag: ${{ github.event.release.tag_name }}
           assets: |
             *.tar.gz
             *.zip
