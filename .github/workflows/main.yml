@@ -19,7 +19,7 @@ jobs:
         run: |
             ls -al gehennaspack/
             unzip gehennaspack/PaddleOCR -d gehennaspack/PaddleOCR/
-            git archive HEAD --format=zip --worktree-attributes --prefix="gehennaspack/" -o "gehennaspack-${{ github.event.release.tag_name }}.zip"
+            git archive HEAD --format=zip --worktree-attributes --prefix="gehennaspack/" -o "gehennaspack/gehennaspack-${{ github.event.release.tag_name }}.zip"
 
       - name: Upload
         uses: actions/upload-release-asset@v1
@@ -28,5 +28,5 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_name: gehennaspack/gehennaspack-${{ github.event.release.tag_name }}.zip
-          asset_path: gehennaspack/gehennaspack-${{ github.event.release.tag_name }}.zip
+          asset_path: ./gehennaspack/gehennaspack-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
