@@ -13,7 +13,6 @@ jobs:
       id: ${{ steps.rel.outputs.id }}
     steps:
     - uses: actions/checkout@v2
-    - id: rel
-      uses: ncipollo/release-action@v1
-      - with:
+    - uses: ncipollo/release-action@v1
+      with:
         token: ${{ secrets.PAT }}
