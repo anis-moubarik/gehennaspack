@@ -17,19 +17,19 @@ jobs:
         id: package
         run: |
             ls -al gehennaspack/
-            zip -r gehennaspack-nodeps-${{ github.event.release.tag_name }}.zip gehennaspack/
+            mv gehennaspack/run.ahk gehennaspack-${{ github.event.release.tag_name }}.ahk
             unzip gehennaspack/PaddleOCR.zip -d gehennaspack/
             mv gehennaspack/PaddleOCR-AutoHotkey/PaddleOCR gehennaspack/PaddleOCR
             rm gehennaspack/PaddleOCR.zip
             rm -rf gehennaspack/PaddleOCR-AutoHotkey
             ls -al gehennaspack/
-            zip -r gehennaspack-deps-${{ github.event.release.tag_name }}.zip gehennaspack/
+            zip -r gehennaspack-${{ github.event.release.tag_name }}.zip gehennaspack/
 
       - name: Delete old release assets
         uses: mknejp/delete-release-assets@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.event.release.tag_name }}
+          tag: ${{ github.event.release.id }}
           assets: |
             *.tar.gz
             *.zip
@@ -39,8 +39,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_name: gehennaspack-deps-${{ github.event.release.tag_name }}.zip
-          asset_path: ./gehennaspack-deps-${{ github.event.release.tag_name }}.zip
+          asset_name: gehennaspack-${{ github.event.release.tag_name }}.zip
+          asset_path: ./gehennaspack-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
       - name: Upload without deps
         uses: actions/upload-release-asset@v1
@@ -48,6 +48,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_name: gehennaspack-nodeps-${{ github.event.release.tag_name }}.zip
-          asset_path: ./gehennaspack-nodeps-${{ github.event.release.tag_name }}.zip
-          asset_content_type: application/zip
+          asset_name: gehennaspack-${{ github.event.release.tag_name }}.ahk
+          asset_path: ./gehennaspack-${{ github.event.release.tag_name }}.ahk
+          asset_content_type: text/plain
