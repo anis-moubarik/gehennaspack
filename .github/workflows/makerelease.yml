@@ -1,0 +1,17 @@
+on: 
+  push:
+    tags:
+      - '*'
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      upload_url: ${{ steps.rel.outputs.upload_url }}
+      id: ${{ steps.rel.outputs.id }}
+    steps:
+    - uses: actions/checkout@v2
+    - id: rel
+      uses: ncipollo/release-action@v1
