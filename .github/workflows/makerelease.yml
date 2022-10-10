@@ -1,7 +1,7 @@
 on: 
   push:
     tags:
-      - '*'
+      - 
 
 jobs:
   build:
@@ -11,5 +11,3 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: ncipollo/release-action@v1
-      with:
-        token: ${{ secrets.YOUR_GITHUB_TOKEN }}
