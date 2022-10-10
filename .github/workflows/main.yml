@@ -10,13 +10,13 @@ jobs:
     permissions:
       contents: write
     outputs:
-      upload_url: ${{ steps.rel.upload_url }}
+      upload_url: ${{ steps.rel.outputs.upload_url }}
     steps:
     - uses: actions/checkout@v2
     - id: rel
       uses: ncipollo/release-action@v1
     - name: Upload url
-      run: echo "${{ steps.rel.upload_url }}"
+      run: echo "${{ steps.rel.outputs.upload_url }}"
   pack:
     needs: build
     runs-on: ubuntu-latest
