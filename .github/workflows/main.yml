@@ -1,0 +1,29 @@
+name: Package
+
+on:
+  release:
+    types: [ created ]
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v1
+
+      - name: Package
+        id: package
+        run: |
+            curl https://github.com/telppa/PaddleOCR-AutoHotkey/releases/download/v20220110/PaddleOCR-AutoHotkey_EN.zip -o /PaddleOCR.zip
+            unzip /PaddleOCR -d PaddleOCR
+            git archive HEAD --format=zip --worktree-attributes --prefix="/" -o "gehennaspack-${{ github.event.release.tag_name }}.zip"
+
+      - name: Upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_name: gehennaspack-${{ github.event.release.tag_name }}.zip
+          asset_path: ./gehennaspack-${{ github.event.release.tag_name }}.zip
+          asset_content_type: application/zip
