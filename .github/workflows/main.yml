@@ -18,7 +18,8 @@ jobs:
         id: package
         run: |
             ls -al gehennaspack/
-            unzip gehennaspack/PaddleOCR.zip -d gehennaspack/PaddleOCR/
+            unzip gehennaspack/PaddleOCR.zip -d gehennaspack/
+            mv gehennaspack/PaddleOCR-AutoHotkey gehennaspack/PaddleOCR
             rm gehennaspack/PaddleOCR.zip
             zip -r gehennaspack-${{ github.event.release.tag_name }}.zip gehennaspack/
 
