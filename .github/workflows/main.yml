@@ -10,11 +10,13 @@ jobs:
     steps:
       - name: Clone project
         uses: actions/checkout@v1
-
+      - name: wget
+        uses: wei/wget@v1
+        with:
+          args: -qO- https://github.com/telppa/PaddleOCR-AutoHotkey/releases/download/v20220110/PaddleOCR-AutoHotkey_EN.zip -O gehennaspack/PaddleOCR.zip
       - name: Package
         id: package
         run: |
-            curl -LO https://github.com/telppa/PaddleOCR-AutoHotkey/releases/download/v20220110/PaddleOCR-AutoHotkey_EN.zip -o gehennaspack/PaddleOCR.zip
             ls -al gehennaspack/
             unzip gehennaspack/PaddleOCR -d gehennaspack/PaddleOCR/
             git archive HEAD --format=zip --worktree-attributes --prefix="gehennaspack/" -o "gehennaspack-${{ github.event.release.tag_name }}.zip"
