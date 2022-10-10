@@ -38,13 +38,13 @@ jobs:
             zip -r gehennaspack-${{ github.event.release.tag_name }}.zip gehennaspack/
 
       - name: Upload url
-        run: echo "${{ needs.build.upload_url }}"
+        run: echo "${{ needs.build.outputs.upload_url }}"
       - name: Upload
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ needs.build.upload_url }}
+          upload_url: ${{ needs.build.outputs.upload_url }}
           asset_name: gehennaspack-${{ github.event.release.tag_name }}.zip
           asset_path: ./gehennaspack-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
