@@ -20,7 +20,7 @@ jobs:
             unzip gehennaspack/PaddleOCR.zip -d gehennaspack/
             mv gehennaspack/PaddleOCR-AutoHotkey/PaddleOCR gehennaspack/PaddleOCR
             rm gehennaspack/PaddleOCR.zip
-            rm gehennaspack/PaddleOCR-AutoHotkey
+            rm -rf gehennaspack/PaddleOCR-AutoHotkey
             ls -al gehennaspack/
             zip -r gehennaspack-${{ github.event.release.tag_name }}.zip gehennaspack/
 
