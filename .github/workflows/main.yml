@@ -14,8 +14,9 @@ jobs:
       - name: Package
         id: package
         run: |
-            curl https://github.com/telppa/PaddleOCR-AutoHotkey/releases/download/v20220110/PaddleOCR-AutoHotkey_EN.zip -o /PaddleOCR.zip
-            unzip /PaddleOCR -d PaddleOCR
+            mkdir /tmp
+            curl https://github.com/telppa/PaddleOCR-AutoHotkey/releases/download/v20220110/PaddleOCR-AutoHotkey_EN.zip -o /tmp/PaddleOCR.zip
+            unzip /tmp/PaddleOCR -d PaddleOCR/
             git archive HEAD --format=zip --worktree-attributes --prefix="/" -o "gehennaspack-${{ github.event.release.tag_name }}.zip"
 
       - name: Upload
