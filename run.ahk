@@ -1,8 +1,4 @@
 ;
-; Ade's Anti AFK AHK script for WoW
-;
-
-;
 ; How to use this script
 ;
 ; Make sure WoW is running
