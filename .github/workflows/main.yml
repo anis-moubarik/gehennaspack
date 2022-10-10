@@ -24,12 +24,13 @@ jobs:
             rm -rf gehennaspack/PaddleOCR-AutoHotkey
             ls -al gehennaspack/
             zip -r gehennaspack-${{ github.event.release.tag_name }}.zip gehennaspack/
+            echo ${{ github.event.release.assets }}
 
       - name: Delete old release assets
         uses: mknejp/delete-release-assets@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.event.release.id }}
+          tag: ${{ github.event.release.tag }}
           assets: |
             *.tar.gz
             *.zip
