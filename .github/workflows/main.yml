@@ -9,9 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      upload_url: ${{ steps.rel.upload_url }}
     steps:
     - uses: actions/checkout@v2
-    - uses: ncipollo/release-action@v1
+    - id: rel
+      uses: ncipollo/release-action@v1
   pack:
     needs: build
     runs-on: ubuntu-latest
