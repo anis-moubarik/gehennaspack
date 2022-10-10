@@ -1,11 +1,19 @@
 name: Package
-
-on:
-  release:
-    types: [ created, published, edited, released ]
-
+on: 
+  push:
+    tags:
+      - '*'
+  
 jobs:
-  ubuntu:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ncipollo/release-action@v1
+  pack:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Clone project
