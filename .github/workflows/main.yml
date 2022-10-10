@@ -14,9 +14,9 @@ jobs:
       - name: Package
         id: package
         run: |
-            curl https://github.com/telppa/PaddleOCR-AutoHotkey/releases/download/v20220110/PaddleOCR-AutoHotkey_EN.zip -o /gehennaspack/PaddleOCR.zip
-            unzip /gehennaspack/PaddleOCR -d /gehennaspack/PaddleOCR/
-            git archive HEAD --format=zip --worktree-attributes --prefix="/gehennaspack" -o "gehennaspack-${{ github.event.release.tag_name }}.zip"
+            curl https://github.com/telppa/PaddleOCR-AutoHotkey/releases/download/v20220110/PaddleOCR-AutoHotkey_EN.zip -o gehennaspack/PaddleOCR.zip
+            unzip gehennaspack/PaddleOCR -d gehennaspack/PaddleOCR/
+            git archive HEAD --format=zip --worktree-attributes --prefix="gehennaspack/" -o "gehennaspack-${{ github.event.release.tag_name }}.zip"
 
       - name: Upload
         uses: actions/upload-release-asset@v1
@@ -24,6 +24,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_name: /gehennaspack/gehennaspack-${{ github.event.release.tag_name }}.zip
+          asset_name: gehennaspack/gehennaspack-${{ github.event.release.tag_name }}.zip
           asset_path: ./gehennaspack/gehennaspack-${{ github.event.release.tag_name }}.zip
           asset_content_type: application/zip
